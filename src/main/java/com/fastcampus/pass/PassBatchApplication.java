@@ -10,7 +10,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-
 @EnableBatchProcessing
 @SpringBootApplication
 public class PassBatchApplication {
@@ -22,6 +21,10 @@ public class PassBatchApplication {
   public PassBatchApplication(JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory) {
     this.jobBuilderFactory = jobBuilderFactory;
     this.stepBuilderFactory = stepBuilderFactory;
+  }
+
+  public static void main(String[] args) {
+    SpringApplication.run(PassBatchApplication.class, args);
   }
 
   @Bean
@@ -40,10 +43,6 @@ public class PassBatchApplication {
         .get("passJob")
         .start(passStep())
         .build();
-  }
-
-  public static void main(String[] args) {
-    SpringApplication.run(PassBatchApplication.class, args);
   }
 
 }
