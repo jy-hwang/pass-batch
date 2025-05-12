@@ -1,16 +1,14 @@
 package com.fastcampus.pass.repository.booking;
 
 import com.fastcampus.pass.repository.BaseEntity;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fastcampus.pass.repository.pass.PassEntity;
+import com.fastcampus.pass.repository.user.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -27,7 +25,15 @@ public class BookingEntity extends BaseEntity {
 
   @Enumerated(EnumType.STRING)
   private BookingStatus status;
-  private boolean userPass;
+  private boolean usedPass;
   private boolean attended;
+
+  private LocalDateTime startedAt;
+  private LocalDateTime endedAt;
+  private LocalDateTime cancelledAt;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "userId", insertable = false, updatable = false)
+  private UserEntity userEntity;
 
 }
