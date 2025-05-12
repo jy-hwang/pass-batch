@@ -1,13 +1,7 @@
 package com.fastcampus.pass.repository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.fastcampus.pass.repository.packaze.PackageEntity;
 import com.fastcampus.pass.repository.packaze.PackageRepository;
-import java.time.LocalDateTime;
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -18,15 +12,21 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 @Slf4j
 @SpringBootTest
-@ActiveProfiles("test")
+@ActiveProfiles("tc")
 public class PackageRepositoryTest {
 
   @Autowired
   private PackageRepository packageRepository;
 
-  @Disabled
   @DisplayName("save test")
   @Test
   public void test_save() {
@@ -42,7 +42,6 @@ public class PackageRepositoryTest {
     assertNotNull(packageEntity.getPackageSeq());
   }
 
-  @Disabled
   @Test
   public void test_findByCreatedAtAfter() {
     // Given
@@ -70,7 +69,6 @@ public class PackageRepositoryTest {
     assertEquals(packageEntity1.getPackageSeq(), packageEntities.get(0).getPackageSeq());
   }
 
-  @Disabled
   @Test
   public void test_updateCountAndPeriod() {
     // Given
@@ -89,7 +87,6 @@ public class PackageRepositoryTest {
     assertEquals(120, updatedPackageEntity.getPeriod());
   }
 
-  @Disabled
   @Test
   public void test_delete() {
     // Given
