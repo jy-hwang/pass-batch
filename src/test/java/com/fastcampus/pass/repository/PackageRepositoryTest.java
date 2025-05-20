@@ -3,7 +3,6 @@ package com.fastcampus.pass.repository;
 import com.fastcampus.pass.repository.packaze.PackageEntity;
 import com.fastcampus.pass.repository.packaze.PackageRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +13,10 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 @Slf4j
 @SpringBootTest
@@ -83,8 +82,8 @@ public class PackageRepositoryTest {
 
     // Then
     assertEquals(1, updatedCount);
-    assertEquals(30, updatedPackageEntity.getCount());
-    assertEquals(120, updatedPackageEntity.getPeriod());
+    assertEquals(Optional.of(30L), updatedPackageEntity.getCount());
+    assertEquals(Optional.of(120L), updatedPackageEntity.getPeriod());
   }
 
   @Test
